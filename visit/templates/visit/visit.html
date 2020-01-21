@@ -1,0 +1,82 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Visítanos{% endblock title %}
+
+{% block content %}
+{% if cover %}
+<section class="generic-banner relative" style="background: url({{cover.image.url}}); outline: 300px solid #b68934bd !important;
+outline-offset: -300px;
+overflow: hidden;
+position: relative;">
+  <div class="container">
+    <div class="row height align-items-center justify-content-center">
+      <div class="col-lg-10">
+        <div class="generic-banner-content">
+          <h2 class="text-white">{{cover.header}}</h2>
+          <p class="text-white">{{cover.paragraph}}</p>
+          {% if request.user.is_staff %}
+          <a href="{% url 'admin:visit_cover_change' cover.id %}" class="genric-btn primary small"><i
+              class="fa fa-pencil"></i></a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+{% if visit %}
+<div class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-3"></div>
+              <div class="col-md-6 text-center">
+                <h6 class="text-uppercase"><b>{{visit.header}}</b>
+                  {% if request.user.is_staff %}
+                  <a href="{% url 'admin:visit_visit_change' visit.id %}" class="genric-btn primary small"><i
+                      class="fa fa-pencil"></i></a>
+                  {% endif %}</h6>
+                <h1 class="text-uppercase">{{visit.subheader}}</h1>
+                <div class="table-responsive py-3">
+
+                  <table class="table">
+                    <tbody>
+                      {% for schedule in timeTable %}
+                      <tr>
+                        {% ifnotequal schedule.FromDay schedule.ToDay %}
+                        <td class="text-left"><i>{{schedule.FromDay}} a {{schedule.ToDay}}</i></td>
+                        {% else %}
+                        <td class="text-left"><i>{{schedule.FromDay}}</i></td>
+                        {% endifnotequal %}
+                        <td class="text-right"><i>{{schedule.FromHour}}:00 a {{schedule.ToHour}}:00</i></td>
+                        {% if request.user.is_staff %}
+                        <td>
+                          <a href="{% url 'admin:visit_timetable_change' schedule.id %}"
+                            class="genric-btn primary small"><i class="fa fa-pencil"></i></a></td>
+                        {% endif %}
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+
+                  </table>
+                </div>
+                <h1 class="">{{visit.addressLine1}}</h1>
+                <h3 class="pb-3">{{visit.addressLine2}}</h3>
+                {% if visit.phoneNumber %}
+                <p class="">Llámanos</p>
+                <p class="">{{visit.phoneNumber}}</p>
+                {% endif %}
+              </div>
+              <div class="col-md-3"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endblock content %}

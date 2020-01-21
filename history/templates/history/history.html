@@ -1,0 +1,45 @@
+{% extends 'core/base.html' %}
+{% block title %} Historia {% endblock %}
+
+{% block content %}
+{% if cover %}
+<section class="generic-banner relative" style="background: url({{cover.image.url}}); outline: 300px solid #b68934bd !important;
+outline-offset: -300px;
+overflow: hidden;
+position: relative;">
+  <div class="container">
+    <div class="row height align-items-center justify-content-center">
+      <div class="col-lg-10">
+        <div class="generic-banner-content">
+          <h2 class="text-white">{{cover.header}}</h2>
+          <p class="text-white">{{cover.paragraph}}</p>
+          {% if request.user.is_staff %}
+						<a href="{% url 'admin:history_cover_change' cover.id %}" class="genric-btn primary small"><i class="fa fa-pencil"></i></a>
+						{% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+{% if history %}
+<div class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card" style="">
+          <div class="card-body">
+            <h5 class="text-uppercase"><b>{{history.title}}</b>
+              {% if request.user.is_staff %}
+              <a href="{% url 'admin:history_history_change' history.id %}" class="genric-btn primary small"><i class="fa fa-pencil"></i></a>
+              {% endif %}</h5>
+            <h1 class="text-uppercase display-4">{{history.subtitle}}</h1>
+            <p class="text-justify">{{history.content}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endblock %}

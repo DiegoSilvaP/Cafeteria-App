@@ -1,0 +1,66 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Blog{% endblock %}
+{% block content %}
+{% if cover %}
+<section class="generic-banner relative" style="background: url({{cover.image.url}}); outline: 300px solid #b68934bd !important;
+outline-offset: -300px;
+overflow: hidden;
+position: relative;">
+  <div class="container">
+    <div class="row height align-items-center justify-content-center">
+      <div class="col-lg-10">
+        <div class="generic-banner-content">
+          <h2 class="text-white">{{cover.header}}</h2>
+          <p class="text-white">{{cover.paragraph}}</p>
+          {% if request.user.is_staff %}
+          <a href="{% url 'admin:blog_cover_change' cover.id %}" class="genric-btn primary small"><i class="fa fa-pencil"></i></a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+{% if request.user.is_staff %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand">Hola {{user}}!</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'blogCreate' %}">Agregar post</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+{% endif %}
+{% for post in post_list %}
+<div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card text-center">
+            <div class="card-body">
+              <h5><b>{{post.published|date:"SHORT_DATE_FORMAT"}}</b>
+                {% if request.user.is_staff %}
+                <a href="{% url 'blogUpdate' post.id %}" class="genric-btn primary small"><i class="fa fa-pencil"></i></a>
+                {% endif %}</h5>
+              <h3 class="display-4">{{post.title}}</h3>
+              {% if post.image %}
+              <img class="card-img-top p-3" src="{{post.image.url}}" alt="Card image cap">
+              {% endif %}
+              <p class="card-text">{{post.content|linebreaks}}</p>
+              <p class="card-text">Publicado por <b>{{post.author}}</b> en {% for category in post.categories.all %}
+                <em><a href="{% url 'categoryPage' category.id %}" class="link">{{category.name}}</a>{% if not forloop.last %},{% endif %}</em>
+              {% endfor %}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+{% endblock %}

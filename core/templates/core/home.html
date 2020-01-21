@@ -1,0 +1,45 @@
+{% extends 'core/base.html' %}
+{% block title %} Inicio {% endblock %}
+{% block content %}
+{% if cover %}
+	<!-- start banner Area -->
+	<section style="background: url({{cover.image.url}}) center; background-size: cover;" class="banner-area"
+		id="home">
+		<div class="container">
+			<div class="row fullscreen d-flex align-items-center justify-content-start">
+				<div class="banner-content col-lg-7">
+					<h6 class="text-white text-uppercase">{{cover.header}}</h6>
+					<h1>
+						{{cover.paragraph}}
+					</h1>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End banner Area -->
+	{% endif %}
+	{% if index %}
+	<!-- Start video-sec Area -->
+	<section class="video-sec-area py-5" id="about">
+		<div class="container">
+			<div class="row justify-content-start align-items-center">
+				<div class="col-lg-6 video-right justify-content-center align-items-center d-flex">
+				</div>
+				<div class="col-lg-6 video-left">
+					<h6>{{index.title}} 
+						{% if request.user.is_staff %}
+						<a href="{% url 'admin:core_index_change' index.id %}" class="genric-btn primary small"><i class="fa fa-pencil"></i></a>
+						{% endif %}
+					</h6> 
+					<h1>{{index.subtitle}}</h1>
+					<p><span>{{index.paragraphTitle}}</span></p>
+					<p>
+						{{index.content}}
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End video-sec Area -->
+	{% endif %}
+{% endblock %}
