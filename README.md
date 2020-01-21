@@ -18,13 +18,9 @@ This is the list of the packages you need and installations commands
 + `virtualenv name` This is used to create a virtual environment, where *name* specifies the name of the virtual environment
     + To activate the virtual environment (windows command), run `name\Scripts\activate` where *name* specifies the name of the virtual environment.
 You can ensure that your virtual environment is enabled in your command window if the promp shows __(*name*)__ where *name* specifies the name of the virtual environment, e.g. 
-
-
-`c:\> virtualenv django3`
-
-`c:\> django3\Scripts\activate`
-
-__`(django3)`__`c:\>`
+        + `c:\> virtualenv django3`
+        + `c:\> django3\Scripts\activate`
+        + __`(django3)`__`c:\>`
 + `django-admin startproject name` This is used to create a new django project, where *name* specifies the name of the project
 + `python manage.py startapp name` This is used to create a new app inside the django project, where *name* specifies the name of the app
 + `python manage.py createsuperuser` This is used to create a super user which has acces to all permissions of the admin panel
