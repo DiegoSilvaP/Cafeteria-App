@@ -5,8 +5,8 @@ This is the list of the packages you need and installations commands
 
 + Django (*Python web framework*) `python -m pip install django==3.0.1`
 + Pillow (*To have "ImageField" as models property to save images*) `python -m pip install Pillow`
-+ Baton (*Admin panel theme*) `python -m pip install django-baton` [Named Link](http://www.google.fr/ "Baton documentation")
-+ Ck editor (*Advanced text editor such as Microsoft Word*, this is used in the *Information* app) `python-m pip install django-ckeditor` [Named Link](http://www.google.fr/ "ck editor documentation")
++ Baton (*Admin panel theme*) `python -m pip install django-baton` [Baton Documentation](https://github.com/otto-torino/django-baton "Baton documentation")
++ Ck editor (*Advanced text editor such as Microsoft Word*, this is used in the *Information* app) `python-m pip install django-ckeditor` [ck editor documentation](https://github.com/django-ckeditor/django-ckeditor "ck editor documentation")
 
 ---
 
