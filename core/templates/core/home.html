@@ -24,6 +24,9 @@
 		<div class="container">
 			<div class="row justify-content-start align-items-center">
 				<div class="col-lg-6 video-right justify-content-center align-items-center d-flex">
+					{% if index.image %}
+					<img src="{{index.image.url}}" alt="">
+					{% endif %}
 				</div>
 				<div class="col-lg-6 video-left">
 					<h6>{{index.title}} 
